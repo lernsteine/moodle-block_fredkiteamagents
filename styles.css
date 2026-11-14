@@ -1,0 +1,459 @@
+.block_fredkiteamagents .fta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.block_fredkiteamagents .fta-note {
+    margin: 0;
+    color: #5b6472;
+    font-size: .9rem;
+}
+
+.block_fredkiteamagents .fta-agent {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.block_fredkiteamagents .fta-agent.is-paused .fta-agent__img,
+.block_fredkiteamagents .fta-agent.is-paused .fta-agent__name {
+    opacity: .5;
+}
+
+.block_fredkiteamagents .fta-agent__img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3149d6;
+    flex: 0 0 auto;
+}
+
+.block_fredkiteamagents .fta-agent__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.block_fredkiteamagents .fta-agent__name {
+    font-weight: 700;
+}
+
+.block_fredkiteamagents .fta-agent__meta {
+    font-size: .85rem;
+    color: #5b6472;
+}
+
+.block_fredkiteamagents .fta-agent__warn {
+    font-size: .85rem;
+    color: #a4261a;
+}
+
+.block_fredkiteamagents .fta-agent__code {
+    font-size: .75rem;
+    color: #5b6472;
+    word-break: break-all;
+}
+
+.block_fredkiteamagents .fta-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    background: #c4c8c0;
+}
+
+.block_fredkiteamagents .fta-dot--ready {
+    background: #22a06b;
+}
+
+.block_fredkiteamagents .fta-dot--error {
+    background: #c9372c;
+}
+
+.block_fredkiteamagents .fta-dot--building,
+.block_fredkiteamagents .fta-dot--removing {
+    background: #e2a03f;
+}
+
+.block_fredkiteamagents .fta-actions,
+.block_fredkiteamagents .fta-actions form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.block_fredkiteamagents .fta-btn {
+    border: 1px solid #d5d8d2;
+    background: #fff;
+    color: #121a26;
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+.block_fredkiteamagents .fta-btn--quiet {
+    border-color: transparent;
+    color: #5b6472;
+}
+
+.block_fredkiteamagents .fta-btn--main {
+    background: #121a26;
+    border-color: #121a26;
+    color: #fff;
+}
+
+.block_fredkiteamagents .fta-add {
+    border-top: 1px solid #e2e4e0;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.block_fredkiteamagents .fta-add__title {
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #5b6472;
+}
+
+.block_fredkiteamagents .fta-template {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.block_fredkiteamagents .fta-template img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.block_fredkiteamagents .fta-template__text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.25;
+}
+
+.block_fredkiteamagents .fta-template__text small {
+    color: #5b6472;
+}
+
+.block_fredkiteamagents .fta-limit {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.block_fredkiteamagents .fta-limit select {
+    font-size: .85rem;
+    padding: 0 4px;
+    border-radius: 6px;
+    border: 1px solid #d5d8d2;
+}
+
+/* 0.1.12: compact list, details behind the info button. */
+.block_fredkiteamagents .fta {
+    gap: 12px;
+}
+
+.block_fredkiteamagents .fta-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.block_fredkiteamagents .fta-agent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px 0;
+}
+
+.block_fredkiteamagents .fta-agent__row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.block_fredkiteamagents .fta-agent__pic {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.block_fredkiteamagents .fta-agent__pic img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #3149d6;
+    display: block;
+}
+
+.block_fredkiteamagents .fta-agent.is-paused .fta-agent__pic img {
+    opacity: .45;
+    filter: grayscale(1);
+}
+
+.block_fredkiteamagents .fta-agent__pic .fta-dot {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    margin: 0;
+    width: 11px;
+    height: 11px;
+    border: 2px solid #fff;
+}
+
+.block_fredkiteamagents .fta-agent__text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.25;
+}
+
+.block_fredkiteamagents .fta-agent__name,
+.block_fredkiteamagents .fta-agent__text .fta-agent__meta {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.block_fredkiteamagents .fta-agent__meta {
+    font-size: .8rem;
+}
+
+.block_fredkiteamagents .fta-agent__warn,
+.block_fredkiteamagents .fta-agent__code {
+    padding-left: 46px;
+}
+
+.block_fredkiteamagents .fta-agent > .fta-agent__meta {
+    padding-left: 46px;
+}
+
+.block_fredkiteamagents .fta-info {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #8a929e;
+    padding: 0;
+}
+
+.block_fredkiteamagents .fta-info:hover,
+.block_fredkiteamagents .fta-info[aria-expanded="true"] {
+    background: #eef0ec;
+    color: #121a26;
+}
+
+.block_fredkiteamagents .fta-more {
+    margin-left: 46px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: #f5f6f3;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.block_fredkiteamagents .fta-more[hidden] {
+    display: none;
+}
+
+.block_fredkiteamagents .fta-limit {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .8rem;
+    color: #5b6472;
+}
+
+.block_fredkiteamagents .fta-limit select {
+    font-size: .8rem;
+    padding: 1px 4px;
+    border-radius: 6px;
+    border: 1px solid #d5d8d2;
+    background: #fff;
+    margin-left: auto;
+}
+
+.block_fredkiteamagents .fta-more .fta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+    margin-top: 4px;
+}
+
+.block_fredkiteamagents .fta-link {
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: .8rem;
+    font-weight: 600;
+    color: #121a26;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+.block_fredkiteamagents .fta-link--quiet {
+    color: #a4261a;
+}
+
+.block_fredkiteamagents .fta-add {
+    gap: 6px;
+}
+
+.block_fredkiteamagents .fta-template img {
+    width: 32px;
+    height: 32px;
+}
+
+.block_fredkiteamagents .fta-template__text strong,
+.block_fredkiteamagents .fta-template__text small {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.block_fredkiteamagents .fta-template__text strong {
+    font-size: .9rem;
+}
+
+.block_fredkiteamagents .fta-plus {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #d5d8d2;
+    background: #fff;
+    color: #121a26;
+    display: grid;
+    place-items: center;
+    padding: 0;
+}
+
+.block_fredkiteamagents .fta-plus:hover {
+    background: #121a26;
+    border-color: #121a26;
+    color: #fff;
+}
+
+.block_fredkiteamagents .fta-plus:disabled {
+    opacity: .4;
+}
+
+.block_fredkiteamagents .fta-add__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.block_fredkiteamagents .fta-link--small {
+    font-size: .75rem;
+    font-weight: 500;
+    color: #5b6472;
+}
+
+/* Long role lines never push the info button out of the row. */
+.block_fredkiteamagents .fta-agent__row {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.block_fredkiteamagents .fta-agent__row > .fta-info {
+    flex: 0 0 auto;
+}
+
+.block_fredkiteamagents .fta-agent__text > .fta-agent__meta {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 1.1.0: the booked FredKI package does not include Team Agents. */
+.block_fredkiteamagents .fta-plan {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border: 1px solid #f0c36d;
+    border-radius: 10px;
+    background: #fff8e6;
+}
+.block_fredkiteamagents .fta-plan p {
+    margin: 0 0 8px;
+}
+
+/* 1.1.2: setup checklist for administrators. */
+.fta-setup {
+    max-width: 760px;
+}
+.fta-setup__steps {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.fta-setup__step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    border: 1px solid #dfe5e8;
+    border-radius: 12px;
+    background: #fff;
+}
+.fta-setup__step.is-done {
+    background: #f3faf6;
+    border-color: #bfe3cf;
+}
+.fta-setup__mark {
+    flex: 0 0 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    background: #e7f4f6;
+    color: #00687a;
+}
+.fta-setup__step.is-done .fta-setup__mark {
+    background: #2f9e6e;
+    color: #fff;
+}
+.fta-setup__body {
+    min-width: 0;
+}
+.fta-setup__body h3 {
+    margin: 4px 0 6px;
+    font-size: 1.05rem;
+}
+.fta-setup__body p {
+    margin: 0 0 8px;
+}

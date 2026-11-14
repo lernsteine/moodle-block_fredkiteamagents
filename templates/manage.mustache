@@ -1,0 +1,148 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_fredkiteamagents/manage
+
+    Agents of the course and templates to add.
+
+    Example context (json):
+    {
+        "courseid": 2, "sesskey": "abc", "action": "#", "connected": true, "pending": false,
+        "hasagents": true,
+        "agents": [{"id": 1, "name": "Die Expertin", "role": "Fachwissen aus ihrem Ordner", "colour": "#3149d6",
+            "image": "https://example.com/a.jpg", "active": true, "ready": true, "statuslabel": "bereit",
+            "files": "3 Dateien in FredKI", "hasfailed": false, "folderurl": "#", "mention": "@Expertin"}],
+        "hastemplates": false, "templates": []
+    }
+}}
+<div class="fta" data-region="fredkiteamagents" data-courseid="{{courseid}}" data-pending="{{#pending}}1{{/pending}}{{^pending}}0{{/pending}}">
+    {{^connected}}
+    <div class="fta-plan" role="status">
+        <p>{{#str}}notconnected, block_fredkiteamagents{{/str}}</p>
+        {{#setupurl}}<a class="btn btn-primary btn-sm" href="{{setupurl}}">{{#str}}setup_open, block_fredkiteamagents{{/str}}</a>{{/setupurl}}
+    </div>
+    {{/connected}}
+    {{#needsformat}}
+    <div class="fta-plan" role="status">
+        <p>{{#str}}needsformat, block_fredkiteamagents{{/str}}</p>
+        {{#formaturl}}<a class="btn btn-secondary btn-sm" href="{{formaturl}}">{{#str}}needsformat_change, block_fredkiteamagents{{/str}}</a>{{/formaturl}}
+    </div>
+    {{/needsformat}}
+    {{#teamplanrefused}}
+    <div class="fta-plan" role="status">
+        <p>{{#str}}teamplan_notice, block_fredkiteamagents{{/str}}</p>
+        {{#teamplanurl}}<a class="btn btn-primary btn-sm" href="{{teamplanurl}}" target="_blank" rel="noopener">{{#str}}teamplan_upgrade, block_fredkiteamagents{{/str}}</a>{{/teamplanurl}}
+    </div>
+    {{/teamplanrefused}}
+    {{#hasagents}}
+    <ul class="fta-list">
+    {{#agents}}
+        <li class="fta-agent{{^active}} is-paused{{/active}}" data-agentid="{{id}}">
+            <div class="fta-agent__row">
+                <span class="fta-agent__pic">
+                    <img src="{{image}}" alt="" style="border-color: {{colour}}">
+                    <span class="fta-dot fta-dot--{{status}}" title="{{statuslabel}}"></span>
+                </span>
+                <span class="fta-agent__text">
+                    <span class="fta-agent__name" style="color: {{colour}}">{{name}}</span>
+                    <span class="fta-agent__meta">
+                        {{#isremoving}}{{statuslabel}}{{/isremoving}}
+                        {{^isremoving}}{{#ready}}{{#active}}{{#companion}}{{#str}}companionmeta, block_fredkiteamagents{{/str}}{{/companion}}{{^companion}}{{mention}} · {{todayshort}}{{/companion}}{{/active}}{{^active}}{{#str}}pausedlabel, block_fredkiteamagents{{/str}}{{/active}}{{/ready}}{{^ready}}{{statuslabel}}{{/ready}}{{/isremoving}}
+                    </span>
+                </span>
+                {{^isremoving}}
+                <button type="button" class="fta-info" data-action="fta-info" aria-expanded="false" aria-controls="fta-more-{{id}}" title="{{#str}}details, block_fredkiteamagents, {{name}}{{/str}}">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r=".6" fill="currentColor"/></svg>
+                    <span class="sr-only">{{#str}}details, block_fredkiteamagents, {{name}}{{/str}}</span>
+                </button>
+                {{/isremoving}}
+            </div>
+            {{#limitreached}}<div class="fta-agent__warn">{{#str}}limitreached, block_fredkiteamagents{{/str}}</div>{{/limitreached}}
+            {{#hasfailed}}<div class="fta-agent__warn">{{failed}}</div>{{/hasfailed}}
+            {{#iserror}}<div class="fta-agent__warn">{{error}}</div><div class="fta-agent__code">{{errorcode}}</div>{{/iserror}}
+            {{#isbuilding}}<div class="fta-agent__meta">{{#str}}buildinghint, block_fredkiteamagents{{/str}}</div>{{/isbuilding}}
+            {{#isremoving}}<div class="fta-agent__meta">{{#str}}removinghint, block_fredkiteamagents{{/str}}</div>{{#removeerror}}<div class="fta-agent__code">{{removeerror}}</div>
+            <form method="post" action="{{action}}" class="fta-actions">
+                <input type="hidden" name="courseid" value="{{courseid}}">
+                <input type="hidden" name="sesskey" value="{{sesskey}}">
+                <input type="hidden" name="agentid" value="{{id}}">
+                <button class="fta-link fta-link--quiet" name="action" value="forget" title="{{#str}}forget_help, block_fredkiteamagents{{/str}}">{{#str}}forget, block_fredkiteamagents{{/str}}</button>
+            </form>{{/removeerror}}{{/isremoving}}
+            {{^isremoving}}
+            <div class="fta-more" id="fta-more-{{id}}" hidden>
+                <div class="fta-agent__meta">{{role}}</div>
+                <div class="fta-agent__meta">{{statuslabel}}{{#ready}} · {{files}}{{/ready}}</div>
+                {{#ready}}
+                {{#companion}}<div class="fta-agent__meta">{{#str}}companionhint, block_fredkiteamagents{{/str}}</div>{{/companion}}
+                {{^companion}}
+                <div class="fta-agent__meta">{{#str}}mentionhint, block_fredkiteamagents, {{mention}}{{/str}}</div>
+                <form method="post" action="{{action}}" class="fta-limit">
+                    <input type="hidden" name="courseid" value="{{courseid}}">
+                    <input type="hidden" name="sesskey" value="{{sesskey}}">
+                    <input type="hidden" name="agentid" value="{{id}}">
+                    <input type="hidden" name="action" value="limit">
+                    <label for="fta-limit-{{id}}">{{#str}}dailylimit, block_fredkiteamagents{{/str}}</label>
+                    <select id="fta-limit-{{id}}" name="limit" onchange="this.form.submit()">{{#limits}}<option value="{{value}}"{{#selected}} selected{{/selected}}>{{label}}</option>{{/limits}}</select>
+                </form>
+                {{/companion}}
+                {{/ready}}
+                <form method="post" action="{{action}}" class="fta-actions">
+                    <input type="hidden" name="courseid" value="{{courseid}}">
+                    <input type="hidden" name="sesskey" value="{{sesskey}}">
+                    <input type="hidden" name="agentid" value="{{id}}">
+                    {{#folderurl}}<a class="fta-link" href="{{folderurl}}">{{#str}}openfolder, block_fredkiteamagents{{/str}}</a>{{/folderurl}}
+                    {{#iserror}}<button class="fta-link" name="action" value="retry">{{#str}}retry, block_fredkiteamagents{{/str}}</button>{{/iserror}}
+                    {{#hasfailed}}<button class="fta-link" name="action" value="sync">{{#str}}syncagain, block_fredkiteamagents{{/str}}</button>{{/hasfailed}}
+                    {{^iserror}}{{#active}}<button class="fta-link" name="action" value="pause">{{#str}}pause, block_fredkiteamagents{{/str}}</button>{{/active}}
+                    {{^active}}<button class="fta-link" name="action" value="resume">{{#str}}resume, block_fredkiteamagents{{/str}}</button>{{/active}}{{/iserror}}
+                    <button class="fta-link fta-link--quiet" name="action" value="remove">{{#str}}remove, block_fredkiteamagents{{/str}}</button>
+                </form>
+            </div>
+            {{/isremoving}}
+        </li>
+    {{/agents}}
+    </ul>
+    {{/hasagents}}
+    {{^hasagents}}<p class="fta-note">{{#str}}noagents, block_fredkiteamagents{{/str}}</p>{{/hasagents}}
+
+    {{#connected}}
+    <div class="fta-add">
+        <div class="fta-add__head">
+            <span class="fta-add__title">{{#str}}addagent, block_fredkiteamagents{{/str}}</span>
+            <form method="post" action="{{action}}">
+                <input type="hidden" name="courseid" value="{{courseid}}">
+                <input type="hidden" name="sesskey" value="{{sesskey}}">
+                <button class="fta-link fta-link--small" name="action" value="templates" title="{{#str}}refreshtemplates_help, block_fredkiteamagents{{/str}}">{{#str}}refreshtemplates, block_fredkiteamagents{{/str}}</button>
+            </form>
+        </div>
+        {{^hastemplates}}<p class="fta-note">{{#str}}notemplates, block_fredkiteamagents{{/str}}</p>{{/hastemplates}}
+        {{#templates}}
+        <form class="fta-template" method="post" action="{{action}}" title="{{role}}">
+            <input type="hidden" name="courseid" value="{{courseid}}">
+            <input type="hidden" name="sesskey" value="{{sesskey}}">
+            <input type="hidden" name="template" value="{{key}}">
+            <img src="{{image}}" alt="">
+            <span class="fta-template__text"><strong style="color: {{colour}}">{{name}}</strong><small>{{role}}</small></span>
+            <button class="fta-plus" name="action" value="add"{{^connected}} disabled{{/connected}}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>
+                <span class="sr-only">{{#str}}addnamed, block_fredkiteamagents, {{name}}{{/str}}</span>
+            </button>
+        </form>
+        {{/templates}}
+    </div>
+    {{/connected}}
+</div>
