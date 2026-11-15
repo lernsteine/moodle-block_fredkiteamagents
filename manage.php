@@ -34,6 +34,7 @@ $template = optional_param('template', '', PARAM_ALPHANUMEXT);
 
 $course = get_course($courseid);
 require_login($course);
+$PAGE->set_url(new moodle_url('/blocks/fredkiteamagents/manage.php', ['courseid' => $course->id]));
 require_sesskey();
 $context = context_course::instance($course->id);
 require_capability('block/fredkiteamagents:manage', $context);

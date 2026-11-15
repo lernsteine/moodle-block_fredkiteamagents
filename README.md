@@ -41,7 +41,7 @@ answer is published, so the agents address people personally while FredKI never 
 
 ## Requirements
 
-- Moodle 4.5
+- Moodle 4.5 to 5.3
 - FredKI The Agent (`block_fredkitheagent`), installed and activated: Team Agents uses its activation of the site
   and its connection to the FredKI licence server.
 - The course format FredKI learning space (`format_fredki`): the learning companion and the expert round appear

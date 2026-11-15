@@ -414,7 +414,10 @@ class agents {
             return (int)$user->id;
         }
         require_once($CFG->dirroot . '/user/lib.php');
-        $id = user_create_user((object)[
+        // Moodle 5.3 replaces user_create_user() by \core\user::create_user().
+        $create = method_exists(\core\user::class, 'create_user')
+            ? [\core\user::class, 'create_user'] : 'user_create_user';
+        $id = $create((object)[
             'username' => $username,
             'auth' => 'nologin',
             'firstname' => $template['name'],

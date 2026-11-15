@@ -6,6 +6,8 @@
   Team Agents, the block and the setup page point site administrators to the activation page of FredKI The Agent
   (licence key) and to the plugin's page in Moodle Marketplace; teachers are asked to contact the administrator.
 - README: costs (free for one course, Team Agents packages as paid options in Moodle Marketplace).
+- Moodle 5.0 to 5.3 supported (tested with Moodle 4.5 and 5.3). Moodle 5.3+: agent accounts are created with
+  `\core\user::create_user()`; the management page sets its page URL.
 
 ## 1.1.2 (2026-11-14)
 
