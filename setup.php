@@ -51,9 +51,11 @@ $steps = [
             !$step1 ? 'setup_step2_wait' : ($status['team'] === false ? 'setup_step2_todo' : 'setup_step2_done'),
             'block_fredkiteamagents'
         ),
-        'url' => $step1 && $status['team'] === false ? ($status['teamurl'] ?: $activation->out(false)) : '',
+        'url' => $step1 && $status['team'] === false ? $activation->out(false) : '',
         'label' => get_string('teamplan_upgrade', 'block_fredkiteamagents'),
-        'external' => $status['teamurl'] !== '',
+        'external' => false,
+        'marketplaceurl' => $step1 && $status['team'] === false
+            ? 'https://marketplace.moodle.com/plugins/block_fredkiteamagents' : '',
     ],
     [
         'number' => 3,

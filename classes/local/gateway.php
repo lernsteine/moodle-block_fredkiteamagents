@@ -341,31 +341,31 @@ class gateway {
     }
 
     /**
-     * Remember that the licence server refused Team Agents because the booked package does not include them
-     * (null: Team Agents work again). The link leads to the booking or the upgrade on the licence server.
+     * Remember that the licence server refused Team Agents because the package of this site does not include them.
      *
-     * @param string|null $url Link to book or upgrade, or null to forget the refusal.
+     * Since 1.2.0 no link of the licence server is kept: Team Agents packages are bought in Moodle Marketplace and
+     * activated with their licence key on the activation page of FredKI The Agent.
+     *
+     * @param bool $refused True when refused, false when Team Agents work again.
      */
-    protected static function remember_team_plan(?string $url): void {
-        if ($url === null) {
+    protected static function remember_team_plan(bool $refused): void {
+        if (!$refused) {
             if (get_config('block_fredkiteamagents', 'teamplanrefused')) {
                 unset_config('teamplanrefused', 'block_fredkiteamagents');
-                unset_config('teamplanurl', 'block_fredkiteamagents');
             }
             return;
         }
         set_config('teamplanrefused', time(), 'block_fredkiteamagents');
-        set_config('teamplanurl', preg_match('~^https://[^\s"<>]+$~', $url) ? $url : '', 'block_fredkiteamagents');
     }
 
     /**
      * State of this site at the licence server for the setup page: connected, active, Team Agents included.
      * One request; nothing is stored.
      *
-     * @return array reachable, active, team (true, false or null when the server does not say), teamurl
+     * @return array reachable, active, team (true, false or null when the server does not say)
      */
     public static function site_status(): array {
-        $out = ['reachable' => false, 'active' => false, 'team' => null, 'teamurl' => ''];
+        $out = ['reachable' => false, 'active' => false, 'team' => null];
         if (!self::is_ready()) {
             return $out;
         }
@@ -380,24 +380,16 @@ class gateway {
         if (array_key_exists('team_allowed', $data)) {
             $out['team'] = $data['team_allowed'] === true;
         }
-        $url = (string)($data['team_url'] ?? '');
-        $host = (string)parse_url(self::api_address(), PHP_URL_HOST);
-        if (preg_match('~^https://[^\s"<>]+$~', $url) && strcasecmp((string)parse_url($url, PHP_URL_HOST), $host) === 0) {
-            $out['teamurl'] = $url;
-        }
         return $out;
     }
 
     /**
-     * Whether the licence server last refused Team Agents for the booked package, with the link to upgrade.
+     * Whether the licence server last refused Team Agents for the package of this site.
      *
-     * @return array ['refused' => bool, 'url' => string]
+     * @return array ['refused' => bool]
      */
     public static function team_plan(): array {
-        return [
-            'refused' => (bool)get_config('block_fredkiteamagents', 'teamplanrefused'),
-            'url' => (string)get_config('block_fredkiteamagents', 'teamplanurl'),
-        ];
+        return ['refused' => (bool)get_config('block_fredkiteamagents', 'teamplanrefused')];
     }
 
     /**
@@ -432,11 +424,11 @@ class gateway {
         $parsed = json_decode(trim((string)$raw), true);
         if ($http === 402 && is_array($parsed) && ($parsed['error_code'] ?? '') === 'FK-TEAM-PLAN') {
             // The booked package of this site is FredKI The Agent only: remember it for the notice in the block.
-            self::remember_team_plan((string)($parsed['team_url'] ?? ''));
+            self::remember_team_plan(true);
         } else if (
             in_array($http, [200, 201, 202], true) && str_starts_with($route, 'teamagents/') && $route !== 'teamagents/templates'
         ) {
-            self::remember_team_plan(null);
+            self::remember_team_plan(false);
         }
         if ($curl->get_errno() || !in_array($http, [200, 201, 202], true) || !is_array($parsed)) {
             // Never pass on response bodies: they may contain internal details of the server.

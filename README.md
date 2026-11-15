@@ -48,6 +48,15 @@ answer is published, so the agents address people personally while FredKI never 
   there. In other course formats only mentions with `@Name` in the forum and messages to the learning companion work.
 - Cron running every minute.
 
+## Costs
+
+- The plugin is free and open source (GNU GPL v3 or later). It uses the hosted FredKI service by lernsteine.com.
+- **Free, permanently:** one course with Team Agents and the FredKI learning space, within the free package of FredKI
+  The Agent (200 answered messages per month). No payment method is needed.
+- **Team Agents packages** with more courses and messages are offered as paid options on the plugin's page in Moodle
+  Marketplace. After the purchase a licence key is sent by e-mail; the site administrator enters it on the activation
+  page of FredKI The Agent (version 1.8.0 or later). When a package ends, the site continues in the free package.
+
 ## Privacy
 
 - Conversation text and the files of the knowledge folders are sent to FredKI, without names of people.

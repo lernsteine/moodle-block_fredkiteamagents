@@ -120,7 +120,9 @@ class view {
             'needsformat' => $needsformat,
             'formaturl' => $formaturl,
             'teamplanrefused' => $teamplan['refused'],
-            'teamplanurl' => $teamplan['url'],
+            // Site administrators enter the licence key of a Team Agents package on the activation page of The Agent.
+            'teamplanurl' => $teamplan['refused'] && has_capability('moodle/site:config', \context_system::instance())
+                ? (new \moodle_url('/blocks/fredkitheagent/activation.php'))->out(false) : '',
             'courseid' => $courseid,
             'sesskey' => sesskey(),
             'action' => $action,

@@ -45,7 +45,8 @@
     {{#teamplanrefused}}
     <div class="fta-plan" role="status">
         <p>{{#str}}teamplan_notice, block_fredkiteamagents{{/str}}</p>
-        {{#teamplanurl}}<a class="btn btn-primary btn-sm" href="{{teamplanurl}}" target="_blank" rel="noopener">{{#str}}teamplan_upgrade, block_fredkiteamagents{{/str}}</a>{{/teamplanurl}}
+        {{#teamplanurl}}<a class="btn btn-primary btn-sm" href="{{teamplanurl}}">{{#str}}teamplan_upgrade, block_fredkiteamagents{{/str}}</a>{{/teamplanurl}}
+        {{^teamplanurl}}<p class="small">{{#str}}teamplan_askadmin, block_fredkiteamagents{{/str}}</p>{{/teamplanurl}}
     </div>
     {{/teamplanrefused}}
     {{#hasagents}}

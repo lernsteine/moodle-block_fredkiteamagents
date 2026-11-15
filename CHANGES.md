@@ -1,5 +1,12 @@
 # Changes
 
+## 1.2.0 (2026-11-15)
+
+- Moodle Marketplace: no links to purchase pages outside Moodle Marketplace. When the package of a site does not include
+  Team Agents, the block and the setup page point site administrators to the activation page of FredKI The Agent
+  (licence key) and to the plugin's page in Moodle Marketplace; teachers are asked to contact the administrator.
+- README: costs (free for one course, Team Agents packages as paid options in Moodle Marketplace).
+
 ## 1.1.2 (2026-11-14)
 
 - New page "Set up FredKI Team Agents" (site administration, linked from the plugin settings and from the block):
