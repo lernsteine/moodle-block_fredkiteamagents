@@ -1,5 +1,10 @@
 # Changes
 
+## 1.2.1 (2026-11-19)
+
+- The setup page and the notices no longer point to the plugin's page in Moodle Marketplace (nothing purchasable there
+  yet). They say that packages with Team Agents are activated with a licence key on the FredKI® activation page.
+
 ## 1.2.0 (2026-11-15)
 
 - Moodle Marketplace: no links to purchase pages outside Moodle Marketplace. When the package of a site does not include

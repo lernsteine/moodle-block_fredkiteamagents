@@ -25,11 +25,11 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'block_fredkiteamagents';
-$plugin->version = 2026111500;
+$plugin->version = 2026111901;
 $plugin->requires = 2024100700;
 $plugin->supported = [405, 503];
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.2.0';
+$plugin->release = '1.2.1';
 $plugin->dependencies = [
     'block_fredkitheagent' => 2026110300,
     // The learning companion and the expert round live in the FredKI learning space.

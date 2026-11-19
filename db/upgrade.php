@@ -70,7 +70,7 @@ function xmldb_block_fredkiteamagents_upgrade($oldversion) {
         upgrade_block_savepoint(true, 2026110507, 'fredkiteamagents');
     }
     if ($oldversion < 2026111500) {
-        // 1.2.0: no links to purchase pages are kept; packages come from Moodle Marketplace with a licence key.
+        // 1.2.0: no links to purchase pages are kept; a package is activated with its licence key.
         unset_config('teamplanurl', 'block_fredkiteamagents');
         upgrade_block_savepoint(true, 2026111500, 'fredkiteamagents');
     }

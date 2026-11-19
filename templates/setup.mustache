@@ -25,7 +25,7 @@
         "unreachable": false,
         "steps": [
             {"number": 1, "title": "Activate FredKI", "done": true, "text": "Done.", "url": "", "label": ""},
-            {"number": 2, "title": "Package", "done": false, "text": "Upgrade.", "url": "https://example.com", "label": "Packages and licence key", "external": false, "marketplaceurl": "https://marketplace.moodle.com/plugins/block_fredkiteamagents"},
+            {"number": 2, "title": "Package", "done": false, "text": "Upgrade.", "url": "https://example.com", "label": "Packages and licence key", "external": false},
             {"number": 3, "title": "In the course", "done": false, "next": true, "text": "Choose the format.", "url": "", "label": ""}
         ]
     }
@@ -41,7 +41,6 @@
                 <h3>{{title}}{{#done}} <span class="sr-only visually-hidden">({{#str}}setup_done, block_fredkiteamagents{{/str}})</span>{{/done}}</h3>
                 <p>{{{text}}}</p>
                 {{#url}}<a class="btn btn-primary" href="{{url}}"{{#external}} target="_blank" rel="noopener"{{/external}}>{{label}}</a>{{/url}}
-                {{#marketplaceurl}}<a class="btn btn-link" href="{{marketplaceurl}}" target="_blank" rel="noopener">{{#str}}setup_marketplace, block_fredkiteamagents{{/str}}</a>{{/marketplaceurl}}
             </div>
         </li>
         {{/steps}}

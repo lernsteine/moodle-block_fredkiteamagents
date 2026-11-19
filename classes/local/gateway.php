@@ -343,8 +343,8 @@ class gateway {
     /**
      * Remember that the licence server refused Team Agents because the package of this site does not include them.
      *
-     * Since 1.2.0 no link of the licence server is kept: Team Agents packages are bought in Moodle Marketplace and
-     * activated with their licence key on the activation page of FredKI The Agent.
+     * No link of the licence server is kept: a Team Agents package is activated with its licence key on the
+     * activation page of FredKI The Agent.
      *
      * @param bool $refused True when refused, false when Team Agents work again.
      */
