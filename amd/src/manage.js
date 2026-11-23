@@ -87,24 +87,29 @@ define('block_fredkiteamagents/manage', ['core/ajax', 'core/templates'], functio
             var tries = 0;
             var check = function() {
                 tries++;
+                var latest = null;
                 Ajax.call([{methodname: 'block_fredkiteamagents_status', args: {courseid: courseid}}])[0]
                     .then(function(result) {
-                        var root = document.querySelector(selector);
-                        if (!root) {
+                        latest = result;
+                        if (!document.querySelector(selector)) {
                             return null;
                         }
-                        return Templates.renderForPromise('block_fredkiteamagents/manage', JSON.parse(result.data))
-                            .then(function(rendered) {
-                                var nodes = Templates.replaceNode(root, rendered.html, rendered.js);
-                                var fresh = nodes && nodes[0] ? nodes[0] : document.querySelector(selector);
-                                if (fresh && fresh.querySelectorAll) {
-                                    restore(fresh);
-                                }
-                                if (result.pending && tries < MAXTRIES) {
-                                    window.setTimeout(check, INTERVAL);
-                                }
-                                return null;
-                            });
+                        return Templates.renderForPromise('block_fredkiteamagents/manage', JSON.parse(result.data));
+                    })
+                    .then(function(rendered) {
+                        var root = document.querySelector(selector);
+                        if (!rendered || !root) {
+                            return null;
+                        }
+                        var nodes = Templates.replaceNode(root, rendered.html, rendered.js);
+                        var fresh = nodes && nodes[0] ? nodes[0] : document.querySelector(selector);
+                        if (fresh && fresh.querySelectorAll) {
+                            restore(fresh);
+                        }
+                        if (latest.pending && tries < MAXTRIES) {
+                            window.setTimeout(check, INTERVAL);
+                        }
+                        return null;
                     })
                     .catch(function() {
                         if (tries < MAXTRIES) {

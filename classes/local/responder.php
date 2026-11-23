@@ -306,6 +306,7 @@ class responder {
      *
      * @param \stdClass $post Post to answer.
      * @param \stdClass $agent Agent record.
+     * @param array $labels Neutral names ("Person A") per user id; filled in while the conversation is built.
      * @return string
      */
     protected static function conversation(\stdClass $post, \stdClass $agent, array &$labels = []): string {
