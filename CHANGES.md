@@ -1,5 +1,12 @@
 # Changes
 
+## 1.2.2 (2026-11-24)
+
+- Backup and restore: a course backup contains the Team Agents of the course (template, active, daily limit). A
+  restored or duplicated course gets the agents again; they are built in FredKI® in the background from the restored
+  knowledge folders. Backups made with older versions restore as before.
+- LICENSE file (GNU GPL v3) in the plugin root.
+
 ## 1.2.1 (2026-11-19)
 
 - The setup page and the notices no longer point to the plugin's page in Moodle Marketplace (nothing purchasable there

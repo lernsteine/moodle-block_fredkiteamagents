@@ -56,6 +56,14 @@ answer is published, so the agents address people personally while FredKI never 
 - **Team Agents packages** with more courses and messages are activated with a licence key, which the site
   administrator enters on the activation page of FredKI The Agent (version 1.8.0 or later). When a package ends, the site continues in the free package.
 
+## Backup and restore
+
+A course backup contains which Team Agents take part (template, paused or active, daily limit); their knowledge
+folders are ordinary course activities and are backed up with their files. When the course is restored or
+duplicated, the agents are added to the new course again and built in FredKI in the background, with their own
+agent and knowledge base, from the restored knowledge folders. An agent whose template is no longer offered is
+skipped and noted in the restore log; trainers can add another one in the block.
+
 ## Privacy
 
 - Conversation text and the files of the knowledge folders are sent to FredKI, without names of people.
